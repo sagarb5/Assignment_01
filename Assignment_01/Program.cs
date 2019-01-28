@@ -224,6 +224,7 @@ namespace Assignment_01 // Sagar Billore
             int[] unique = new int[a.Length];
             try
             {
+                Console.WriteLine("Number - Frequency");
                 for (int i = 0; i < a.Length; i++)
                 {
                     if (!ScanForElement(unique, a[i]))
@@ -237,7 +238,6 @@ namespace Assignment_01 // Sagar Billore
                                 k = k + 1;
                             }
                         }
-                        Console.WriteLine("Number - Frequency");
                         Console.WriteLine(a[i] + "      -     " + k);
                     }// end of for loop
                 }
