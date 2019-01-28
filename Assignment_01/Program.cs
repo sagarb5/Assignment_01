@@ -17,13 +17,13 @@ namespace Assignment_01 // Sagar Billore
             Console.ReadKey();
 
             // Ques 3 = Convert Decimal To Binary. 
-            long n2 = 18;
+            long n2 = 15;
             long r2 = decimalTobinary(n2);
             Console.WriteLine("Binary conversion of the decimal number " + n2 + " is: " + r2);
             Console.ReadKey();
 
             // Ques 4 = Convert Binary To Decimal.
-            long n3 = 1101;
+            long n3 = 1111;
             long r3 = BinarytoDecimal(n3);
             Console.WriteLine("Decimal conversion of the binary number " + n3 + " is: " + r3);
             Console.ReadKey();
@@ -36,7 +36,12 @@ namespace Assignment_01 // Sagar Billore
             int[] a = new int[10] { 1, 2, 2, 2, 1, 1, 4, 4, 5, 8 };
             ComputeFrequency(a);
 
+            /* 
+       From this assignment I got to understand how to use different types of methods in an efficient manner.
+       Also learnt the importance of try and catch block, which earlier I used not to work with very often.
+       Was able to Brush up some old concepts.
 
+       */
         }
         // Method to print prime nubers in a certain range.
         public static void printPrimeNumbers(int x, int y)
@@ -81,7 +86,7 @@ namespace Assignment_01 // Sagar Billore
                 for (int i = 1; i <= n; i++)
                 {
                     double fact = getfact(i);
-                    if (i % 2 != 0)
+                    if (i % 2 != 0) // checking the divisibility of i with 2.
                     {
                         sum1 += fact / (i + 1);
 
@@ -97,9 +102,9 @@ namespace Assignment_01 // Sagar Billore
             {
                 Console.WriteLine("Exception occured while computing getSeriesResult()");
             }// end of catch
-            return sum;
+            return sum; // returns the value of sum of the series
         }
-        public static int getfact(int n)
+        public static int getfact(int n) // method to calculate factorial.
         {
             int fact = 1;
             while (n > 0)
@@ -107,7 +112,7 @@ namespace Assignment_01 // Sagar Billore
                 fact = fact * n;
                 n--;
             }
-            return fact;
+            return fact; // returns the factorial
         }// end of factorial method
 
 
@@ -132,16 +137,13 @@ namespace Assignment_01 // Sagar Billore
                     bin = bin + r[i];
 
                 }// end of for loop
-                char[] a = bin.ToCharArray();
-                Array.Reverse(a);
-                bin = new string(a);
-                binfun = long.Parse(bin);
+                binfun = Convert.ToInt64(Convert.ToDecimal(bin));
             }// end of try
             catch
             {
                 Console.WriteLine("Exception occured while computing decimalTobinary()");
             }// end of catch
-            return binfun;
+            return binfun; // returns the binary value.
         }// end of decimal to binary method
 
 
@@ -152,41 +154,58 @@ namespace Assignment_01 // Sagar Billore
             try
             {
                 long rem;
-                long base_val = 1;
+                long base_val = 0;
                 string binary_val = n.ToString();
                 char[] c = binary_val.ToCharArray();
                 Array.Reverse(c);
                 while (n > 0)
                 {
                     rem = n % 10;
-                    decimal_val = decimal_val + rem * base_val;
+                    if (rem == 1)  // to check the value of remainder, whether 1 or not.
+                    {
+                        decimal_val = decimal_val + power(base_val);  // computing decimal value of each digit if remainder is 1 using pow function
+                        base_val++;
+                    }
+                    else
+                    {
+                        base_val++;
+                    }
                     n = n / 10;
-                    base_val = base_val * 2;
                 }
             }// end of try
             catch
             {
                 Console.WriteLine("Exception occured while computing BinaryToDecimal()");
             }// end of catch
-            return decimal_val;
-        }// end of binary to decimal conversion method.
+            return decimal_val; // returns the value of decimal
+        }
+        public static long power(long n)// method to calculate power
+        {
+            long res = 1;
+            for (int i = 0; i < n; i++)
+            {
+                res = res * 2;   // multiplying the number 2 with n number of times
+            }// end of for loop
+            return res;
+        }
+        // end of binary to decimal conversion method.
 
-        // Method to print a Trianglr with "*".
+        // Method to print a Triangle with "*".
         public static void PrintTriangle(int num)
         {
             try
             {
-                int i, j, k;
+                int i, j, k; // declaring integers
                 for (i = 0; i < num + 1; i++)
                 {
                     for (j = num; j > i; j--)
                     {
                         Console.Write(" ");
-                    }
+                    }// end of for loop
                     for (k = 0; k < (2 * i - 1); k++)
                     {
                         Console.Write("*");
-                    }
+                    }// end of for loop
                     Console.WriteLine();
 
                     Console.ReadLine();
@@ -239,12 +258,6 @@ namespace Assignment_01 // Sagar Billore
                 }
             }// end of for loop
             return false;
-        }// end of Compute frequency Method
-        /* 
-         From this assignment I got to understand how to use different types of methods in an efficient manner.
-         Also learnt the importance of try and catch block, which earlier I used not to work with very often.
-         Was able to Brush up some old concepts.
-         
-         */
+        }// end of Compute frequency Method  
     }
 }
